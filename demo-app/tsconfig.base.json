@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@demo-app/auth": ["libs/auth/src/index.ts"]
+      "@demo-app/auth": ["libs/auth/src/index.ts"],
+      "@demo-app/material": ["libs/material/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
