@@ -7,6 +7,11 @@ import { NxModule } from '@nrwl/angular';
 import { authRoutes, AuthModule, AuthGuard } from '@demo-app/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@demo-app/layout';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +21,7 @@ import { LayoutModule } from '@demo-app/layout';
     NxModule.forRoot(),
     RouterModule.forRoot(
       [
-        { path: '', pathMatch: 'full', redirectTo: 'products'},
+        { path: '', pathMatch: 'full', redirectTo: 'products' },
         { path: 'auth', children: authRoutes },
         {
           path: 'products',
@@ -26,13 +31,26 @@ import { LayoutModule } from '@demo-app/layout';
             import('@demo-app/products').then(
               (module) => module.ProductsModule
             ),
-          canActivate: [AuthGuard]
+          canActivate: [AuthGuard],
         },
       ],
       { initialNavigation: 'enabled' }
     ),
     AuthModule,
     LayoutModule,
+    StoreModule.forRoot(
+      {},
+      {
+        metaReducers: !environment.production ? [] : [],
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true,
+        },
+      }
+    ),
+    EffectsModule.forRoot([]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
