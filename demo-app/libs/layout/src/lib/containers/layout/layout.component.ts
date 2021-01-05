@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { AuthService } from '@demo-app/auth'
 import { User } from '@demo-app/data-models'
 import { Store } from '@ngrx/store';
-import {AuthState} from '@demo-app/auth'
-import { productsQuery} from '@demo-app/auth'
+import {AuthState, getUser} from '@demo-app/auth'
+// import { productsQuery} from '@demo-app/auth'
 
 @Component({
   selector: 'app-layout',
@@ -19,7 +19,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     // this.user$ = this.authService.user$
-    this.user$ = this.store.select(productsQuery.getUser)
+    this.user$ = this.store.select(getUser)
   }
 
 }
