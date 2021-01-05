@@ -3,6 +3,7 @@ import { AuthService} from './../../services/auth/auth.service';
 import { Authenticate } from '@demo-app/data-models';
 import { AuthState } from './../../+state/auth.reducer';
 import { Store } from '@ngrx/store';
+import { login } from './../../+state/auth.actions';
 import * as authActions from './../../+state/auth.actions';
 
 // demo-app/apps/customer-portal/src/app/services/auth/auth.service.ts

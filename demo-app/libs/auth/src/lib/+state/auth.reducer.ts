@@ -17,7 +17,7 @@ export interface AuthState {
 }
 
 export interface State extends EntityState<AuthEntity>{
-  selectedId? string | number;
+  selectedId?: string | number;
   loaded: boolean;
   error?: string | null;
 }
